@@ -1,0 +1,14 @@
+version: "2.3"
+services:
+  busy:
+    image: busybox
+    command: ls -la test-data
+    volumes:
+      - type: volume
+        source: samplevolume # reference to volume from volumes
+        target: /test-data # path of the volume inside the container
+
+volumes:
+  samplevolume:
+    name: test-volume # name of the ebs volume created in aws
+    driver: rexray/ebs:0.11.2
